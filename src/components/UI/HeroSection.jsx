@@ -62,7 +62,7 @@ const HeroSection = () => {
           {/* Main Floating Card */}
           <div className="relative z-20 bg-white p-4 rounded-[2.5rem] shadow-[0_50px_100px_-20px_rgba(0,0,0,0.15)] border border-gray-100 rotate-3 hover:rotate-0 transition-transform duration-500">
             <img 
-              src="/src/assets/hero-bg.png" 
+              src="hero-bg (1).png" 
               alt="Tool Display" 
               className="rounded-[2rem] w-full h-125 object-cover"
             />
