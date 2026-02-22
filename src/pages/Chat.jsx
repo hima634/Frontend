@@ -115,7 +115,7 @@ export default function Chat() {
   };
 
   return (
-    <div className="fixed inset-0 top-17 flex bg-gray-50 overflow-hidden">
+    <div className="fixed inset-0 top-30 flex bg-gray-50 overflow-hidden">
       <div className={`${showSidebar ? "flex" : "hidden"} md:flex w-full md:w-80 border-r shrink-0 h-full flex-col bg-white transition-all`}>
         <ChatSidebar rooms={rooms} activeRoom={activeRoom} openChat={openChat} currentUserId={currentUserId} />
       </div>
