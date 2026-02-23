@@ -38,6 +38,7 @@ function App() {
     path: '/',
     element: <AppLayout />,
     errorElement: <ErrorPage />,
+
     children: [
       { index: true, element: <Home /> },
       { path: 'rent-item', element: <RentTool /> },
@@ -75,8 +76,8 @@ function App() {
       },
 
       { path: 'works', element: <HowWorks /> },
-      { path: 'login', element: <Login /> },
-      { path: 'signup', element: <SignUp /> },
+     
+      
       { path: 'verify/:token', element: <VerifyEmail /> },
 
       { path: 'verify', element: <Verify /> },
@@ -102,9 +103,17 @@ function App() {
           </>
         ),
       },
-
+      { path: "*", element: <ErrorPage /> }
     ]
   },
+  { 
+    path: 'signup', 
+    element:<> <Header/> <SignUp /></>
+   },
+   { 
+    path: 'login', 
+    element:<> <Header/> <Login /></>
+   },
   {
     path: "chat",
     element: (
@@ -123,6 +132,7 @@ function App() {
       </ProtectedRoute>
     ),
   },
+  { path: "*", element: <ErrorPage /> }
   ]);
 
   return (<>
