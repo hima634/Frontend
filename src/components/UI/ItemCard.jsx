@@ -12,9 +12,14 @@ const ItemCard = ({ item }) => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
 
-  const isFav = user?.wishlist?.includes(item._id);
-  const itemUrl = `/items/${item.category?.toLowerCase() || 'item'}/${item._id}`;
+  const getItemUrl = () => {
+    const slugCategory = item.category?.toLowerCase().replace(/\s+/g, "-") || "item";
+    const slugName = encodeURIComponent(item.title?.toLowerCase().replace(/\s+/g, "-") || "details");
+    return `/items/${slugCategory}/${slugName}/${item._id}`;
+  };
 
+  const isFav = user?.wishlist?.includes(item._id);
+  
   const toggleFavorite = async (e) => {
     e.preventDefault(); e.stopPropagation();
     if (!user) return navigate("/login");
@@ -43,7 +48,7 @@ const ItemCard = ({ item }) => {
         <Heart className={`h-3.5 w-3.5 ${isFav ? "fill-white" : ""}`} />
       </button>
 
-      <Link to={itemUrl} className="flex flex-col h-full">
+      <Link to={getItemUrl()} className="flex flex-col h-full">
         <div className="aspect-video w-full overflow-hidden bg-slate-100 relative rounded-t-2xl">
           <img
             src={item.images?.[0]?.url}
@@ -67,7 +72,7 @@ const ItemCard = ({ item }) => {
             <p className="text-sm font-black text-slate-900">
               ₹{item.price?.amount}
               <span className="text-[10px] text-slate-400 font-bold tracking-tighter">
-                /{item.price?.type}
+                /{item.price?.type?.charAt(0)}
               </span>
             </p>
             <div className="flex items-center gap-1 text-[8px] font-black text-blue-600 bg-blue-50 px-1.5 py-0.5 rounded">
