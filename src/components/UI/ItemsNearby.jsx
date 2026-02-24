@@ -36,36 +36,31 @@ function ItemsNearby() {
   if (loading) return <div className="py-20"><Loading /></div>;
 
   return (
-    <section className="max-w-7xl mx-auto mt-20 px-6 pb-20">
-      {/* Header Section */}
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 gap-4">
-        <div className="flex items-center gap-4">
-          <div className={`p-3 rounded-2xl shadow-sm ${isLocationSelected ? 'bg-blue-600 text-white' : 'bg-orange-500 text-white'}`}>
-            {isLocationSelected ? <MapPin size={24} /> : <Flame size={24} />}
-          </div>
-          <div>
-            <h2 className="text-3xl font-black text-slate-900 tracking-tight">
-              {isLocationSelected ? "Tools Available Nearby" : "Trending Popular Tools"}
-            </h2>
-            <p className="text-slate-500 font-medium text-sm">
-              {isLocationSelected ? `Found ${items.length} gear ready to rent near you` : "Top-rated equipment from around the community"}
-            </p>
-          </div>
+    <section className="max-w-7xl mx-auto mt-10 px-4 md:px-6 pb-10">
+      {/* Tighter Header Section */}
+      <div className="flex items-center gap-3 mb-6">
+        <div className={`p-2.5 rounded-xl shadow-sm ${isLocationSelected ? 'bg-blue-600 text-white' : 'bg-orange-500 text-white'}`}>
+          {isLocationSelected ? <MapPin size={20} /> : <Flame size={20} />}
+        </div>
+        <div>
+          <h2 className="text-xl md:text-2xl font-black text-slate-900 tracking-tight leading-none">
+            {isLocationSelected ? "Nearby Gear" : "Trending Now"}
+          </h2>
+          <p className="text-slate-500 font-bold text-[11px] uppercase tracking-wider mt-1">
+             {items.length} tools found
+          </p>
         </div>
       </div>
 
       {items.length === 0 ? (
-        <div className="text-center py-20 bg-slate-50 rounded-[3rem] border-2 border-dashed border-slate-200">
-           <div className="bg-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 shadow-sm">
-              <MapPin className="text-slate-300" />
-           </div>
-           <p className="text-slate-500 font-bold italic tracking-tight">No tools listed in this area yet.</p>
-           <button className="mt-4 text-blue-600 font-black text-sm uppercase tracking-widest">Be the first to list →</button>
+        <div className="text-center py-16 bg-slate-50 rounded-[2rem] border-2 border-dashed border-slate-200">
+           <MapPin className="text-slate-300 mx-auto mb-2" size={32} />
+           <p className="text-slate-500 font-bold text-sm">No tools listed here yet.</p>
         </div>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 md:gap-4 auto-rows-fr">
           {items.map((item) => (
-            <ItemCard item={item} key={item._id || Math.random()} />
+            <ItemCard item={item} key={item._id} />
           ))}
         </div>
       )}
