@@ -18,7 +18,6 @@ import Verify from './pages/Verify.jsx'
 import VerifyEmail from './pages/VerifyEmail.jsx'
 import AuthAutoLogin from './components/AuthAutologin.jsx'
 import ProtectedRoute from './components/ProtectedRoute.jsx'
-import { setupInterceptors } from './api/axiosInterceptor.js'
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import Chat from './pages/Chat.jsx'
@@ -29,10 +28,6 @@ import Header from './components/UI/Header.jsx'
 
 function App() {
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    setupInterceptors();
-  }, []);
 
   const router = createBrowserRouter([{
     path: '/',
