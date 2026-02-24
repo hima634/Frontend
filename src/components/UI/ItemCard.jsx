@@ -6,7 +6,7 @@ import api from "../../api/api";
 import { useDispatch, useSelector } from "react-redux";
 import { addFavorite, removeFavorite } from "../../store/User";
 
-const ItemCard = ({ item }) => {
+const ItemCard = ({ item,onFavoriteToggle }) => {
   const { user } = useSelector(state => state.User);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -32,6 +32,9 @@ const ItemCard = ({ item }) => {
       } else {
         await api.delete(`/user/favorite/${item._id}`);
         dispatch(removeFavorite(item._id));
+        if (onFavoriteToggle) {
+          onFavoriteToggle(item._id);
+        }
       }
     } catch (err) { console.error(err); } finally { setLoading(false); }
   };
@@ -72,7 +75,7 @@ const ItemCard = ({ item }) => {
             <p className="text-sm font-black text-slate-900">
               ₹{item.price?.amount}
               <span className="text-[10px] text-slate-400 font-bold tracking-tighter">
-                /{item.price?.type?.charAt(0)}
+                /{item.price?.type}
               </span>
             </p>
             <div className="flex items-center gap-1 text-[8px] font-black text-blue-600 bg-blue-50 px-1.5 py-0.5 rounded">
