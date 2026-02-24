@@ -17,7 +17,7 @@ const ItemDetails = () => {
   const [loading, setLoading] = useState(false);
   const [activeImage, setActiveImage] = useState(0);
 
-  const { user, authLoading } = useSelector(state => state.User);
+  const { user} = useSelector(state => state.User);
 
   const getItem = async () => {
     try {
@@ -56,7 +56,7 @@ const ItemDetails = () => {
     }
   };
 
-  if (authLoading || loading) return <Loading />;
+  if ( loading) return <Loading />;
   if (!item) return <NotFound navigate={navigate} />;
 
   const owner = item.ownerId;
